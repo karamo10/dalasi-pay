@@ -196,7 +196,7 @@ This app is optimized for [Vercel](https://vercel.com). After pushing to GitHub:
 
 **Karamo Camara** · Csaydimba  
 ### GitHub: [@karamo10](https://github.com/karamo10)  
-Instagram: [@devcamz](https://instagram.com/dev.camz)  
-Twitter(X): [@pabicamz](https://x.com/pabicamz) 
+### Instagram: [@devcamz](https://instagram.com/dev.camz)  
+### Twitter: [@pabicamz](https://x.com/pabicamz) 
 ---
 
