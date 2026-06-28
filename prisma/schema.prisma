@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Service {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  duration    Int
+  category    String
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  bookings    Booking[]
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  customerName  String
+  customerEmail String
+  customerPhone String
+  serviceId     String
+  service       Service       @relation(fields: [serviceId], references: [id])
+  date          DateTime
+  status        BookingStatus @default(PENDING)
+  createdAt     DateTime      @default(now())
+  payment       Payment?
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  bookingId   String        @unique
+  booking     Booking       @relation(fields: [bookingId], references: [id])
+  amount      Float
+  currency    String        @default("GMD")
+  method      PaymentMethod
+  status      PaymentStatus @default(PENDING)
+  modemPayRef String?
+  createdAt   DateTime      @default(now())
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+enum PaymentMethod {
+  WAVE
+  AFRIMONEY
+  QMONEY
+  APS
+  CARD
+}
