@@ -34,7 +34,7 @@ export default async function HomePage() {
         </h2>
         <p className="text-white/50 mt-4 max-w-sm text-sm leading-relaxed">
           Choose a service below, fill in your details, and complete your
-          booking in seconds using your preferred Gambian payment method.
+          booking in seconds using your preferred Gambian payment method
         </p>
       </section>
 
