@@ -18,10 +18,10 @@ export default async function HomePage() {
           <p className="text-xs text-white/40 mt-0.5">Book & Pay in GMD</p>
         </div>
         <Link
-          href="/admin"
+          href="/book"
           className="text-xs text-white/40 hover:text-white transition-colors border border-white/10 px-3 py-1.5 rounded"
         >
-          Admin →
+          Book
         </Link>
       </header>
 
