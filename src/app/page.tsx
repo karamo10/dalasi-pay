@@ -94,7 +94,7 @@ export default async function HomePage() {
             { name: 'APS', file: 'APS.svg' },
             { name: 'Afrimoney', file: 'afrimoney.png' },
             { name: 'Qmoney', file: 'qmoney.png' },
-            { name: 'Mastercard', file: 'mastercard.png' },
+            { name: 'Card', file: 'mastercard.png' },
           ].map((method) => (
             <div
               key={method.name}
