@@ -294,18 +294,6 @@ function BookingForm() {
                 />
                 <span className="text-xs font-semibold text-white/40">{method.label}</span>
               </div>
-              //
-              // <button
-              //   key={method.id}
-              //   onClick={() => setForm((prev) => ({ ...prev, paymentMethod: method.id }))}
-              //   className={`border px-3 py-3 text-xs font-semibold transition-all ${
-              //     form.paymentMethod === method.id
-              //       ? `${method.color} bg-white/5`
-              //       : "border-white/10 text-white/30 hover:border-white/20"
-              //   }`}
-              // >
-              //   {method.label}
-              // </button>
             ))}
           </div>
         </div>

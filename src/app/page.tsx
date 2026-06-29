@@ -83,34 +83,79 @@ export default async function HomePage() {
         ))}
       </section>
 
-      {/* Payment methods */}
-      <section className="px-6 py-8 border-t border-white/10">
-        <p className="text-xs text-white/20 uppercase tracking-widest mb-3">
-          Accepted payments
-        </p>
-        <div className="flex flex-wrap items-center gap-4">
-          {[
-            { name: 'Wave', file: 'wave.png' },
-            { name: 'APS', file: 'APS.svg' },
-            { name: 'Afrimoney', file: 'afrimoney.png' },
-            { name: 'Qmoney', file: 'qmoney.png' },
-            { name: 'Card', file: 'mastercard.png' },
-          ].map((method) => (
-            <div
-              key={method.name}
-              className="flex items-center gap-2 border border-white/10 px-3 py-2 hover:border-white/20 transition-colors"
+      <section className="flex items-center justify-between px-6 py-8 border-t border-white/10">
+        {/* Payment methods */}
+        <section className="">
+          <p className="text-xs text-white/20 uppercase tracking-widest mb-3">
+            Accepted payments
+          </p>
+          <div className="flex flex-wrap items-center gap-4">
+            {[
+              { name: 'Wave', file: 'wave.png' },
+              { name: 'APS', file: 'APS.svg' },
+              { name: 'Afrimoney', file: 'afrimoney.png' },
+              { name: 'Qmoney', file: 'qmoney.png' },
+              { name: 'Card', file: 'mastercard.png' },
+            ].map((method) => (
+              <div
+                key={method.name}
+                className="flex items-center gap-2 border border-white/10 px-3 py-2 hover:border-white/20 transition-colors"
+              >
+                <Image
+                  src={`/payments/${method.file}`}
+                  alt={method.name}
+                  width={40}
+                  height={20}
+                  style={{ width: 'auto', height: '20px' }}
+                />
+
+                <span className="text-xs text-white/40">{method.name}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+        {/* social links */}
+        {/* footer link my github and ig account */}
+        <div>
+          <p className="text-xs text-white/20 uppercase tracking-widest mb-3">
+            My socials
+          </p>
+          <div className="flex items-center gap-4">
+            <Link href={'https://github.com/karamo10/'} target="_blank">
+              <Image
+                src="/socials/git.png"
+                alt="Github"
+                width={20}
+                height={20}
+                className="hover:opacity-80 transition-opacity"
+                style={{ width: 'auto', height: '20px' }}
+              />
+            </Link>
+            <Link
+              href={'https://www.linkedin.com/in/karamo-camara-ab4619339/'}
+              target="_blank"
             >
               <Image
-                src={`/payments/${method.file}`}
-                alt={method.name}
-                width={40}
+                src="/socials/link.png"
+                alt="Linkedin"
+                width={20}
                 height={20}
-                style={{ width: "auto", height: "20px" }}
+                className="hover:opacity-80 transition-opacity"
+                style={{ width: 'auto', height: '20px' }}
               />
+            </Link>
 
-              <span className="text-xs text-white/40">{method.name}</span>
-            </div>
-          ))}
+            <Link href={'https://instagram.com/dev.camz/'} target="_blank">
+              <Image
+                src="/socials/ig.png"
+                alt="Instagram"
+                width={20}
+                height={20}
+                className="hover:opacity-80 transition-opacity"
+                style={{ width: 'auto', height: '20px' }}
+              />
+            </Link>
+          </div>
         </div>
       </section>
     </main>
