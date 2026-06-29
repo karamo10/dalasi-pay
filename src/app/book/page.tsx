@@ -18,31 +18,26 @@ const PAYMENT_METHODS = [
     id: 'WAVE',
     label: 'Wave',
     file: 'wave.png',
-    color: 'text-blue-400 border-blue-400/30',
   },
   {
     id: 'AFRIMONEY',
     label: 'Afrimoney',
     file: 'afrimoney.png',
-    color: 'text-orange-400 border-orange-400/30',
   },
   {
     id: 'QMONEY',
     label: 'QMoney',
     file: 'qmoney.png',
-    color: 'text-purple-400 border-purple-400/30',
   },
   {
     id: 'APS',
     label: 'APS',
     file: 'APS.svg',
-    color: 'text-yellow-400 border-yellow-400/30',
   },
   {
     id: 'CARD',
-    label: 'mastercard',
+    label: 'Card',
     file: 'mastercard.png',
-    color: 'text-green-400 border-green-400/30',
   },
 ];
 
@@ -278,7 +273,7 @@ function BookingForm() {
                 onClick={() =>
                   setForm((prev) => ({ ...prev, paymentMethod: method.id }))
                 }
-                className={`flex items-center gap-2 border border-white/10 px-3 py-2 
+                className={`flex items-center gap-2 border border-white/10 px-2 py-2 md:px-3
                   ${form.paymentMethod === method.id 
                   ? `bg-blue-500`
                   : "border-white/10 text-white/30 hover:border-white/20"
