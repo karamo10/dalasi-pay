@@ -1,10 +1,11 @@
-import Link from "next/link";
-import { prisma } from "../lib/prisma";
+import Link from 'next/link';
+import { prisma } from '../lib/prisma';
+import Image from 'next/image';
 
 export default async function HomePage() {
   const services = await prisma.service.findMany({
     where: { isActive: true },
-    orderBy: { category: "asc" },
+    orderBy: { category: 'asc' },
   });
 
   const categories = [...new Set(services.map((s) => s.category))];
@@ -87,14 +88,28 @@ export default async function HomePage() {
         <p className="text-xs text-white/20 uppercase tracking-widest mb-3">
           Accepted payments
         </p>
-        <div className="flex flex-wrap gap-2">
-          {["Wave", "Afrimoney", "QMoney", "APS", "Card"].map((method) => (
-            <span
-              key={method}
-              className="text-xs border border-white/10 px-3 py-1 text-white/40"
+        <div className="flex flex-wrap items-center gap-4">
+          {[
+            { name: 'Wave', file: 'wave.png' },
+            { name: 'APS', file: 'APS.svg' },
+            { name: 'Afrimoney', file: 'afrimoney.png' },
+            { name: 'Qmoney', file: 'qmoney.png' },
+            { name: 'Mastercard', file: 'mastercard.png' },
+          ].map((method) => (
+            <div
+              key={method.name}
+              className="flex items-center gap-2 border border-white/10 px-3 py-2 hover:border-white/20 transition-colors"
             >
-              {method}
-            </span>
+              <Image
+                src={`/payments/${method.file}`}
+                alt={method.name}
+                width={40}
+                height={20}
+                style={{ width: "auto", height: "20px" }}
+              />
+
+              <span className="text-xs text-white/40">{method.name}</span>
+            </div>
           ))}
         </div>
       </section>
