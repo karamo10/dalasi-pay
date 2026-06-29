@@ -83,9 +83,9 @@ export default async function HomePage() {
         ))}
       </section>
 
-      <section className="flex items-center justify-between px-6 py-8 border-t border-white/10">
+      <section className="flex flex-col gap-4 items-center px-6 py-8 border-t border-white/10 md:flex-row md:justify-between">
         {/* Payment methods */}
-        <section className="">
+        <div className="flex flex-col items-center gap-2 md:items-start">
           <p className="text-xs text-white/20 uppercase tracking-widest mb-3">
             Accepted payments
           </p>
@@ -113,14 +113,13 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
-        </section>
-        {/* social links */}
-        {/* footer link my github and ig account */}
-        <div>
+        </div>
+        {/* My socials */}
+        <div className="flex flex-col gap-2 items-center ">
           <p className="text-xs text-white/20 uppercase tracking-widest mb-3">
             My socials
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <Link href={'https://github.com/karamo10/'} target="_blank">
               <Image
                 src="/socials/git.png"
