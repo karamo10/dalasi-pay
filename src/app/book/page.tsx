@@ -20,6 +20,8 @@ const PAYMENT_METHODS = [
   { id: "CARD", label: "Card", color: "text-green-400 border-green-400/30" },
 ];
 
+
+
 function BookingForm() {
   const searchParams = useSearchParams();
   const router = useRouter();

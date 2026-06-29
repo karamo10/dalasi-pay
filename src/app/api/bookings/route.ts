@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
       customer_phone: customerPhone,
       title: service.name,
       description: service.description,
+      return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/receipt?bookingId=${booking.id}`,
       metadata: {
         bookingId: booking.id,
         serviceName: service.name,
