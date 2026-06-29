@@ -1,4 +1,4 @@
-import { PrismaClient, PaymentMethod, PaymentStatus, BookingStatus } from '@/lib/generated/prisma/client';
+import { PrismaClient, PaymentMethod, PaymentStatus, BookingStatus } from '@/src/lib/generated/prisma/client';
 import { PrismaPg } from "@prisma/adapter-pg";
 
 const adapter = new PrismaPg({
