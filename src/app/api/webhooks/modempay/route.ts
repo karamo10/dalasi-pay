@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import ModemPay from 'modem-pay';
 import { prisma } from '@/src/lib/prisma';
 
-const modemPay = new ModemPay(process.env.MODEM_SECRET_KEY!);
+const modemPay = new ModemPay(process.env.MODEM_PAY_SECRET_KEY!);
 
 export async function POST(req: NextRequest) {
   const signture = req.headers.get('x-modem-signature') || '';
