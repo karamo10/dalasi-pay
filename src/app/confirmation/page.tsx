@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 
 function ConfirmationContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const bookingId = searchParams.get("bookingId");
-  const paymentUrl = searchParams.get("paymentUrl");
+  const bookingId = searchParams.get('bookingId');
+  const paymentUrl = searchParams.get('paymentUrl');
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -19,7 +19,20 @@ function ConfirmationContent() {
       <div className="max-w-lg mx-auto px-6 py-14 text-center">
         {/* Success icon */}
         <div className="w-16 h-16 rounded-full border-2 border-green-400 flex items-center justify-center mx-auto mb-6">
-          <span className="text-green-400 text-2xl">✓</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#05df72"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m4.5 12.75 6 6 9-13.5"
+            />
+          </svg>
         </div>
 
         <h2 className="text-2xl font-bold mb-2">Booking Created</h2>
@@ -37,8 +50,8 @@ function ConfirmationContent() {
 
         {/* Pay button */}
         {paymentUrl && (
-          
-          <a  href={paymentUrl}
+          <a
+            href={paymentUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-green-400 text-black font-bold py-4 text-sm hover:bg-green-300 transition-colors mb-4 text-center"
@@ -48,7 +61,7 @@ function ConfirmationContent() {
         )}
 
         <button
-          onClick={() => router.push("/")}
+          onClick={() => router.push('/')}
           className="text-white/30 text-sm hover:text-white transition-colors"
         >
           ← Back to services
