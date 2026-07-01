@@ -1,6 +1,9 @@
 import { prisma } from "@/src/lib/prisma";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
+/** Tailwind class map for booking status badge colours. */
 const STATUS_COLORS = {
   PENDING: "text-yellow-400 border-yellow-400/20 bg-yellow-400/5",
   CONFIRMED: "text-blue-400 border-blue-400/20 bg-blue-400/5",
@@ -8,12 +11,20 @@ const STATUS_COLORS = {
   CANCELLED: "text-red-400 border-red-400/20 bg-red-400/5",
 };
 
+/** Tailwind class map for payment status text colours. */
 const PAYMENT_COLORS = {
   PENDING: "text-yellow-400",
   SUCCESS: "text-green-400",
   FAILED: "text-red-400",
 };
 
+/**
+ * Admin dashboard that shows an overview of all bookings with aggregate stats.
+ * Fetches all bookings with their service and payment data at request time (Server Component).
+ *
+ * @returns The admin dashboard with summary stats (total bookings, revenue, pending count)
+ *   and a list of all bookings ordered newest-first.
+ */
 export default async function AdminPage() {
   const bookings = await prisma.booking.findMany({
     include: {
