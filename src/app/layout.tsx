@@ -12,11 +12,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+/** Next.js page metadata applied to the entire application. */
 export const metadata: Metadata = {
   title: "Dalasi Pay",
   description: "Dalasipay powered by Modempay",
 };
 
+/**
+ * Root layout that wraps every page with the Geist font variables and base HTML structure.
+ *
+ * @param children - The active page or nested layout rendered inside the body.
+ * @returns The full HTML document shell.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

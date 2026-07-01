@@ -4,6 +4,16 @@ import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 
+/**
+ * Represents a bookable service returned from the API.
+ *
+ * @property id - Unique identifier of the service.
+ * @property name - Display name of the service.
+ * @property price - Price in Dalasi (GMD).
+ * @property duration - Duration in minutes.
+ * @property category - Category the service belongs to.
+ * @property description - Short description shown to the customer.
+ */
 type Service = {
   id: string;
   name: string;
@@ -13,6 +23,7 @@ type Service = {
   description: string;
 };
 
+/** Supported payment methods displayed on the booking form. */
 const PAYMENT_METHODS = [
   {
     id: 'WAVE',
@@ -41,6 +52,15 @@ const PAYMENT_METHODS = [
   },
 ];
 
+/**
+ * Inner booking form component that reads the pre-selected `serviceId` from
+ * the URL search params, loads available services, and handles form submission.
+ *
+ * On successful submission it redirects to `/confirmation` with the bookingId
+ * and paymentUrl returned by the API.
+ *
+ * @returns The booking form UI, a loading spinner, or an error state.
+ */
 function BookingForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -77,12 +97,23 @@ function BookingForm() {
     fetchServices();
   }, [serviceId]);
 
+  /**
+   * Updates the selected service in local state when the user picks from the dropdown.
+   *
+   * @param id - The service ID chosen by the user.
+   */
   const handleServiceChange = (id: string) => {
     const found = services.find((s) => s.id === id) || null;
     setService(found);
     setForm((prev) => ({ ...prev, serviceId: id }));
   };
 
+  /**
+   * Validates the form, submits the booking to `/api/bookings`, and redirects
+   * to the confirmation page on success.
+   *
+   * @returns Early if validation fails; otherwise navigates away on success or sets an error message.
+   */
   const handleSubmit = async () => {
     setError('');
     if (
@@ -163,7 +194,7 @@ function BookingForm() {
             </option>
             {services.map((s) => (
               <option key={s.id} value={s.id} className="bg-black">
-                {s.name} — D {s.price.toLocaleString()}
+                {s.name} - D {s.price.toLocaleString()}
               </option>
             ))}
           </select>
@@ -341,6 +372,12 @@ function BookingForm() {
   );
 }
 
+/**
+ * Book page entry point. Wraps `BookingForm` in a `Suspense` boundary
+ * because `BookingForm` reads from `useSearchParams`.
+ *
+ * @returns The booking page with a Suspense fallback loader.
+ */
 export default function BookPage() {
   return (
     <Suspense

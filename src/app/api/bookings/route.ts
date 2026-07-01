@@ -2,8 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/src/lib/prisma";
 import ModemPay from "modem-pay";
 
+/** ModemPay client initialised with the secret key from the environment. */
 const modemPay = new ModemPay(process.env.MODEM_PAY_SECRET_KEY!);
 
+/**
+ * Creates a new booking, initiates a ModemPay payment intent, and records the payment.
+ *
+ * @param req - Incoming POST request containing customer details, serviceId, date, and paymentMethod.
+ * @returns JSON object with `bookingId` and `paymentUrl` on success,
+ *   or an error response with status 404 (service not found) or 500.
+ */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();

@@ -2,6 +2,13 @@ import Link from 'next/link';
 import { prisma } from '../lib/prisma';
 import Image from 'next/image';
 
+/**
+ * Home page that lists all active services grouped by category.
+ * Fetches services directly from the database at request time (Server Component).
+ *
+ * @returns The storefront page with a service grid, accepted payment methods, and social links.
+ */
+
 export default async function HomePage() {
   const services = await prisma.service.findMany({
     where: { isActive: true },

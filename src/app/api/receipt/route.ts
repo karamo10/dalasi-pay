@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/src/lib/prisma";
 
+/**
+ * Retrieves full booking details (including service and payment) for a receipt.
+ *
+ * @param req - Incoming request. Must include a `bookingId` query parameter.
+ * @returns JSON booking object with nested service and payment,
+ *   or an error response with status 400, 404, or 500.
+ */
 export async function GET(req: NextRequest) {
   const bookingId = req.nextUrl.searchParams.get("bookingId");
 

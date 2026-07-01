@@ -3,6 +3,12 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
+/**
+ * Reads `bookingId` and `paymentUrl` from the URL search params and renders
+ * the booking confirmation screen with a link to complete payment on ModemPay.
+ *
+ * @returns The confirmation UI showing the booking ID and a "Complete Payment" button.
+ */
 function ConfirmationContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -71,6 +77,12 @@ function ConfirmationContent() {
   );
 }
 
+/**
+ * Confirmation page entry point. Wraps `ConfirmationContent` in a `Suspense`
+ * boundary because it reads from `useSearchParams`.
+ *
+ * @returns The confirmation page with a Suspense fallback loader.
+ */
 export default function ConfirmationPage() {
   return (
     <Suspense

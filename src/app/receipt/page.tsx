@@ -4,6 +4,19 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 
+/**
+ * Full booking record returned by `/api/receipt`, including the related service and payment.
+ *
+ * @property id - Unique booking identifier.
+ * @property customerName - Full name of the customer.
+ * @property customerEmail - Email address of the customer.
+ * @property customerPhone - Phone number of the customer.
+ * @property date - ISO date string for the scheduled appointment.
+ * @property status - Current booking status (e.g. PENDING, CONFIRMED, CANCELLED).
+ * @property service - The service that was booked.
+ * @property payment - Associated payment record, or null if not yet created.
+ */
+
 type Booking = {
   id: string;
   customerName: string;
@@ -25,6 +38,11 @@ type Booking = {
   } | null;
 };
 
+/**
+ * Fetches and displays a booking receipt including customer details, service info,
+ * payment status, a QR code for verification, and a WhatsApp share button.
+ *
+ */
 function ReceiptContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -291,6 +309,12 @@ function ReceiptContent() {
   );
 }
 
+/**
+ * Receipt page entry point. Wraps `ReceiptContent` in a `Suspense` boundary
+ * because it reads from `useSearchParams`.
+ *
+ * @returns The receipt page with a Suspense fallback loader.
+ */
 export default function ReceiptPage() {
   return (
     <Suspense
